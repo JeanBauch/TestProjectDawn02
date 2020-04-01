@@ -36,7 +36,7 @@ export default function Profile() {
 
             setProjects(projects.filter(project => project.id !== id));
         } catch (err) {
-            alert('Erro ao deletar caso, tente novamente.')
+            alert('Erro ao deletar caso, tente novamente.');
         }
     }
 
@@ -71,7 +71,7 @@ export default function Profile() {
                         <strong>Valor:</strong>
                         <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(project.value)}</p>
 
-                        <button onClick={() => handleDeleteProject()} type="button">
+                        <button onClick={() => handleDeleteProject(project.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />
                         </button>
                     </li>

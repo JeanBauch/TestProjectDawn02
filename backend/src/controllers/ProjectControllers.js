@@ -46,7 +46,7 @@ module.exports = {
             .select('team_id')
             .first();
 
-        if(project.team_id != team_id) {
+        if(project.team_id !== team_id) {
             return response.status(401).json({ error: 'Operation not permitted' });  // Cod 401 é n autorizado!
         }
 
