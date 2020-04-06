@@ -49,14 +49,14 @@ export default function NewProject() {
                     <p>Descreva seu projeto detalhadamente para compartilhar com a comunidade.</p>
                     
                     <Link className="back-link" to="/profile">
-                        <FiArrowLeft size={16} color="#E02041" />
+                        <FiArrowLeft size={16} color="#00E0FF" />
                         Voltar para home
                     </Link>
 
                 </section>
 
                 <form onSubmit={handleNewProject}>
-                    <input 
+                    <input
                         placeholder="Título do projeto" 
                         value={title}
                         onChange={e => setTitle(e.target.value)}

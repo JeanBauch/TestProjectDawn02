@@ -1,7 +1,7 @@
 import React, { useState ,useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
-import { FiUser } from 'react-icons/fi'
+import { FiUser } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -47,13 +47,16 @@ export default function Profile() {
     }
 
     function handleProfile() {
-        history.push('/profile');
+        if(teamId==null)
+            history.push('/login');
+        else
+            history.push('/profile');
     }
 
     return (
         <div className="profile-container">
             <header>
-                <Link className="jooj" to="/">
+                <Link id="btnHome" to="/">
                     <img src={logoImg} alt="Project Dawn" />
                 </Link>
                 <span>Bem vindo, {teamName}</span>
@@ -66,29 +69,9 @@ export default function Profile() {
                 <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#00E0FF" />
                 </button>
-
             </header>
 
-            <h1>Projetos cadastrados</h1>
-            <ul>
-                {projects.map(project => (
-                    <li key={ project.id }>
-                        <strong>Caso: </strong>
-                        <p>{project.title}</p>
-
-                        <strong>Descrição:</strong>
-                        <p>{project.description}</p>
-
-                        <strong>Valor:</strong>
-                        <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(project.value)}</p>
-
-                        <button onClick={() => handleDeleteProject(project.id)} type="button">
-                            <FiTrash2 size={20} color="#a8a8b3" />
-                        </button>
-                    </li>
-                ))}
-            </ul>
+            <h1>Projetos cadastrados (Home)</h1>
         </div>
     );
 }
-
