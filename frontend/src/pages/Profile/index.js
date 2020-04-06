@@ -7,7 +7,7 @@ import api from '../../services/api';
 
 import './styles.css';
 
-import logoImg from '../../assets/logo.svg';
+import logoImg from '../../assets/Logo.png';
 
 export default function Profile() {
     const [projects, setProjects] = useState([]);
@@ -53,7 +53,7 @@ export default function Profile() {
     return (
         <div className="profile-container">
             <header>
-                <Link className="jooj" to="/">
+                <Link id="btnHome" to="/">
                     <img src={logoImg} alt="Project Dawn" />
                 </Link>
                 <span>Bem vindo, {teamName}</span>

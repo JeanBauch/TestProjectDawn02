@@ -47,7 +47,7 @@ form textarea {
 .button {
     width: 100%;
     height: 60px;
-    background: linear-gradient(180deg, #BEBEBE 0%, rgba(255, 255, 255, 0) 100%), #00E0FF;
+    background: #00E0FF;
     border: 0;
     border-radius: 8px;
     color: #fff;
@@ -88,4 +88,6 @@ form textarea {
 #btnHome{
     margin-left: 0;
     box-sizing: content-box;
+    width:auto;
+    
 }

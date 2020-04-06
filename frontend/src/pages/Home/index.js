@@ -7,7 +7,7 @@ import api from '../../services/api';
 
 import './styles.css';
 
-import logoImg from '../../assets/logo.svg';
+import logoImg from '../../assets/Logo.png';
 
 export default function Profile() {
     const [projects, setProjects] = useState([]);

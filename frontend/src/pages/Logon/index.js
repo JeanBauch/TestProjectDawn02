@@ -6,8 +6,8 @@ import api from '../../services/api';
 
 import './styles.css';
 
-import logoBom from '../../assets/Logo.png';
-import logoImg from '../../assets/logo.svg';
+import logoImg from '../../assets/Logo.png';
+//import logoImg from '../../assets/logo.svg';
 import filesImg from '../../assets/TransferFiles.png';
 
 export default function Logon() {
