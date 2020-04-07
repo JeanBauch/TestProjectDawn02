@@ -8,8 +8,8 @@ module.exports = {
 
         const projects = await connection('projects')
             .join('teams','teams.id','=','projects.team_id')               // Puxar dados da table dos times 
-            .limit(5)
-            .offset((page-1) * 5)   // Listar os projetos 5 por vez, uma paginaçao
+            // .limit(5)
+            // .offset((page-1) * 5)   // Listar os projetos 5 por vez, uma paginaçao
             .select(['projects.*',
                 'teams.name',
                 'teams.email',

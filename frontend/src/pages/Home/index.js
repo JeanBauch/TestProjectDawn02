@@ -18,28 +18,11 @@ export default function Profile() {
     
 
     useEffect(() => {
-        api.get('profile', {
-            headers: {
-                Authorization: teamId,
-            }
+        api.get('projects', {
         }).then(response => {
             setProjects(response.data);
         })
-    }, [teamId]);
-
-    async function handleDeleteProject(id) {
-        try {
-            await api.delete(`projects/${id}`, {
-                headers: {
-                    Authorization: teamId,
-                }
-            });
-
-            setProjects(projects.filter(project => project.id !== id));
-        } catch (err) {
-            alert('Erro ao deletar caso, tente novamente.');
-        }
-    }
+    }, []);
 
     function handleLogout() {
         localStorage.clear();
@@ -72,6 +55,22 @@ export default function Profile() {
             </header>
 
             <h1>Projetos cadastrados (Home)</h1>
+
+            <ul>
+                {projects.map(project => (
+                    <li key={ project.id }>
+                        <strong>Caso: </strong>
+                        <p>{project.title}</p>
+
+                        <strong>Descrição:</strong>
+                        <p>{project.description}</p>
+
+                        <strong>Valor:</strong>
+                        <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(project.value)}</p>
+                    </li>
+                ))}
+            </ul>
+
         </div>
     );
 }
