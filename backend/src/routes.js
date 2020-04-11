@@ -5,7 +5,10 @@ const TeamController = require('./controllers/TeamControllers');
 const ProjectController = require('./controllers/ProjectControllers');
 const ProfileController = require('./controllers/ProfileController');
 const SessionController = require('./controllers/SessionController');
+const ImageController = require('./controllers/ImageController');
 
+const multer  = require("multer");
+const multerConfig = require("./config/multer");
 const routes = express.Router();    // Desacoplando as rotas do express, em uma nova variavel
 
 routes.post('/sessions', SessionController.create);
@@ -43,5 +46,25 @@ routes.delete('/projects/:id', celebrate({
         id: Joi.number().required(),
     })
 }), ProjectController.delete);
+
+/*
+routes.get("/projects/img", async(req,res) =>{
+    
+} )*/
+
+routes.post("/projects/img",multer(multerConfig).single("file"), ImageController.createImg);
+/*
+routes.post("/projects/img", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        key: Joi.string().required(),
+        name: Joi.string().required(),
+        size: Joi.string().required(),
+        url: Joi.string().required(),
+    })
+}), ImageController.create);*/
+
+routes.get('/projects/img', ImageController.index);
+
+routes.delete('/projects/img/:id', ImageController.delete);
 
 module.exports = routes;

@@ -1,9 +1,19 @@
+require("dotenv").config();
+
 const express = require('express');
 const cors = require('cors')        // Quem pode acessar?
 const { errors } = require('celebrate');
 const routes = require('./routes'); // Importa as routas do arquivo ~routes.js~
+const morgan = require('morgan');
 
 const app = express();
+
+
+app.use(express.urlencoded({
+   extended:true
+}));
+
+app.use(morgan('dev'));
 
 app.use(cors());
 app.use(express.json()); // Para entender que as postagens está sendo enviado no formato de JSON

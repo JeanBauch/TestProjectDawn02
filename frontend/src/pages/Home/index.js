@@ -59,7 +59,7 @@ export default function Profile() {
             <ul>
                 {projects.map(project => (
                     <li key={ project.id }>
-                        <strong>Caso: </strong>
+                        <strong>Projeto: </strong>
                         <p>{project.title}</p>
 
                         <strong>Descrição:</strong>
