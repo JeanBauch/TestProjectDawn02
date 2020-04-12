@@ -89,5 +89,23 @@ form textarea {
     margin-left: 0;
     box-sizing: content-box;
     width:auto;
-    
+}
+
+.buttonHmCadastro{
+    width: 10px;
+    height: 45px;
+    border: 1px solid #00E0FF;
+    border-radius: 8px;
+    color: #00E0FF;
+    font-weight: 700;
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 45px;
+    transition: filter 0.2s;
+}
+.buttonbuttonHmCadastro:hover {
+    filter: brightness(80%);
 }

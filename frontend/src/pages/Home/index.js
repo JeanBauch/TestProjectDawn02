@@ -1,6 +1,6 @@
 import React, { useState ,useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import { FiPower } from 'react-icons/fi';
 import { FiUser } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -37,40 +37,42 @@ export default function Profile() {
     }
 
     return (
-        <div className="profile-container">
-            <header>
-                <Link id="btnHome" to="/">
-                    <img src={logoImg} alt="Project Dawn" />
-                </Link>
-                <span>Bem vindo, {teamName}</span>
+        <div>
+            <div className="header-container">
+                <header>
+                    <Link id="btnHome" to="/">
+                        <img src={logoImg} alt="Project Dawn" />
+                    </Link>
+                    <span>Bem vindo, {teamName}</span>
 
-                <Link className="button" to="/projects/new">Cadastrar novo caso</Link>
-                <button onClick={handleProfile} type="button">
-                    <FiUser size={18} color="#00E0FF" />
-                </button>
+                    <Link className="buttonHmCadastro" to="/projects/new">Cadastrar novo caso</Link>
+                    <button onClick={handleProfile} type="button">
+                        <FiUser size={20} color="#00E0FF" />
+                    </button>
 
-                <button onClick={handleLogout} type="button">
-                    <FiPower size={18} color="#00E0FF" />
-                </button>
-            </header>
+                    <button onClick={handleLogout} type="button">
+                        <FiPower size={20} color="#00E0FF" />
+                    </button>
+                </header>
+            </div>
+            <div className="profile-container">
+                <h1>Projetos cadastrados (Home)</h1>
 
-            <h1>Projetos cadastrados (Home)</h1>
+                <ul>
+                    {projects.map(project => (
+                        <li key={ project.id }>
+                            <strong>Projeto: </strong>
+                            <p>{project.title}</p>
 
-            <ul>
-                {projects.map(project => (
-                    <li key={ project.id }>
-                        <strong>Projeto: </strong>
-                        <p>{project.title}</p>
+                            <strong>Descrição:</strong>
+                            <p>{project.description}</p>
 
-                        <strong>Descrição:</strong>
-                        <p>{project.description}</p>
-
-                        <strong>Valor:</strong>
-                        <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(project.value)}</p>
-                    </li>
-                ))}
-            </ul>
-
+                            <strong>Valor:</strong>
+                            <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(project.value)}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }
