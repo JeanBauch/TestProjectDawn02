@@ -47,24 +47,13 @@ routes.delete('/projects/:id', celebrate({
     })
 }), ProjectController.delete);
 
-/*
-routes.get("/projects/img", async(req,res) =>{
-    
-} )*/
-
 routes.post("/projects/img",multer(multerConfig).single("file"), ImageController.createImg);
-/*
-routes.post("/projects/img", celebrate({
-    [Segments.BODY]: Joi.object().keys({
-        key: Joi.string().required(),
-        name: Joi.string().required(),
-        size: Joi.string().required(),
-        url: Joi.string().required(),
-    })
-}), ImageController.create);*/
+
 
 routes.get('/projects/img', ImageController.index);
 
 routes.delete('/projects/img/:id', ImageController.delete);
+
+/*routes.put('/projects/new', ProjectController.insertURL);*/
 
 module.exports = routes;

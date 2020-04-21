@@ -24,18 +24,36 @@ module.exports = {
     },
 
     async create(request, response) {
-        const { title, description, value } = request.body;
+        const { title, description } = request.body;
         const team_id = request.headers.authorization;
 
+        const dNow = new Date;
+        const data =  dNow.getDate() + '/' + (dNow.getMonth()+1) + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes();
+ 
+       
         const [id] = await connection('projects').insert({
             title,
             description,
-            value,
+            data,
             team_id,
+            url: "",
         });
         
+        response.header('ProjectID', id);
         return response.json({ id });
     },
+
+    /*
+    async insertURL(request, response) {
+        const url = request.url;
+        const id = request.id;
+        
+        await connection('projects').where('id',id).update({
+            url: url,
+        })
+        return response.json({ url });
+    }, */
+
 
     async delete(request, response) {
         const { id }  = request.params;

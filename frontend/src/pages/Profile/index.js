@@ -15,8 +15,8 @@ export default function Profile() {
 
     const teamId = localStorage.getItem('teamId');
     const teamName = localStorage.getItem('teamName');
-    
 
+    
     useEffect(() => {
         api.get('profile', {
             headers: {
@@ -79,8 +79,7 @@ export default function Profile() {
                         <strong>Descrição:</strong>
                         <p>{project.description}</p>
 
-                        <strong>Valor:</strong>
-                        <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(project.value)}</p>
+                        <strong>Imagem: </strong>
 
                         <button onClick={() => handleDeleteProject(project.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />

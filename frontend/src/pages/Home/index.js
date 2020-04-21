@@ -67,8 +67,8 @@ export default function Profile() {
                             <strong>Descrição:</strong>
                             <p>{project.description}</p>
 
-                            <strong>Valor:</strong>
-                            <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(project.value)}</p>
+                            <strong>Imagem:</strong>
+                            <p></p>
                         </li>
                     ))}
                 </ul>

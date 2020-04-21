@@ -5,7 +5,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import api from '../../services/api'
 import './styles.css';
 
-import logoImg from '../../assets/Logo.png';
+import logoImg from '../../assets/logoMaior.png';
 
 export default function Register() {
     const [name, setName] = useState('');

@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import NewProject from './pages/NewProject';
 import Home from './pages/Home';
+import NewProjectImage from './pages/NewProjectImage'
 
 export default function Routes() {
     return (
@@ -16,6 +17,7 @@ export default function Routes() {
                 <Route path="/register" component={Register} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/projects/new" component={NewProject} />
+                <Route path="/projects/img" component={NewProjectImage} />
             </Switch>
         </BrowserRouter>
     );

@@ -8,32 +8,38 @@ module.exports = {
         return response.json(img);
     },
 
+    /*async searchById(request,response) {
+        const projectid = request.headers.projectid;
+        const img = await connection('images').where('project',projectid).select('url').first();
 
-    async create(request, response) {
-        const { key, name, size, url} = request.body;
-    
+        return response.json(img);
+    },*/
+
+    async createImg(req,res) {
+        const { key, originalname: name,size, location: url="" } = req.file;
+        const project = req.headers.projectid;
 
         await connection('images').insert({
             key,
             name,
             size,
             url,
+            project,
         })
-    
-        return response.json();
+
+        return res.json( {key,name,size,url,project} );
     },
 
-    async createImg(req,res) {
-        const { key, originalname: name,size, location: url="" } = req.file;
-        
-        const jooj = await connection('images').insert({
-            key,
-            name,
-            size,
-            url,
+    /*async setLogo(req,res) {
+        console.log("entry");
+        const project = req.headers.projectid;
+        const logo = await connection('images').where('project',project).select('url').first();
+
+        await connection('projects').where('id',project).update({
+            url: logo,
         })
-        return res.json();
-    },
+        return res.json(logo);
+    },*/
 
     async delete(req,res) {
         const { id } = req.params; 

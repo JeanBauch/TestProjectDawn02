@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi'
+import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
 
 import './styles.css';
 
-import logoImg from '../../assets/Logo.png';
+import logoImg from '../../assets/logoMaior.png';
 
 export default function NewProject() {
     const[title, setTitle] = useState('');
     const[description, setDescription] = useState('');
-    const[value, setValue] = useState('');
+    const[value] = useState('');
 
     const history = useHistory();
 
@@ -31,12 +31,14 @@ export default function NewProject() {
                 headers: {
                     Authorization: teamId,
                 }
-
+            }).then(response => {
+                localStorage.setItem('ProjectID',response.data.id);
             })
-            history.push('/profile');
+            history.push('/projects/img');
         } catch (err) {
             alert('Erro ao cadastrar, tente novamente.');
         }
+        
     }
 
     return (
@@ -67,13 +69,6 @@ export default function NewProject() {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
-
-                    <input 
-                        placeholder="Valor em reais" 
-                        value={value}
-                        onChange={e => setValue(e.target.value)}
-                    />
-
                     <button className="button" type="submit">Cadastrar</button> 
                 </form>
             </div>
