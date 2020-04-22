@@ -11,6 +11,7 @@ import logoImg from '../../assets/Logo.png';
 
 export default function Profile() {
     const [projects, setProjects] = useState([]);
+    const [images, setImages] = useState([]);
     const history = useHistory();
 
     const teamId = localStorage.getItem('teamId');
@@ -26,6 +27,23 @@ export default function Profile() {
             setProjects(response.data);
         })
     }, [teamId]);
+
+    useEffect(() => {
+        async function fetchData(){
+            await api.get('/projects/img').then(response => {
+                setImages(response.data);
+            })
+        }
+        fetchData();
+    },[]);
+
+    /*function handleImages(id) {
+        const imagesProject = images.map(img => {
+            return img.project === id ? { ...img, sin: true } : null
+        });
+        
+        setImages(imagesProject);
+    }*/
 
     async function handleDeleteProject(id) {
         try {
@@ -79,7 +97,19 @@ export default function Profile() {
                         <strong>Descrição:</strong>
                         <p>{project.description}</p>
 
-                        <strong>Imagem: </strong>
+                        <strong>
+                            Imagem:
+                                {images.map(img => (
+                                    <ul key={img.key}>
+                                        {img.project == project.id && ( 
+                                            <li>
+                                                <img alt="img_project" src={img.url}></img>
+                                            </li>
+                                        )}
+                                    </ul>
+                                ))}
+                            
+                        </strong>
 
                         <button onClick={() => handleDeleteProject(project.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />
