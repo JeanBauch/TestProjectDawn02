@@ -6,7 +6,7 @@ import api from '../../services/api';
 
 import './styles.css';
 
-import logoImg from '../../assets/Logo.png';
+import logoImg from '../../assets/logoMaior.png';
 //import logoImg from '../../assets/logo.svg';
 import filesImg from '../../assets/TransferFiles.png';
 

@@ -9,6 +9,8 @@ import api from '../../../services/api'
 //import fileSize from 'filesize';
 //import { MdUpdate } from 'react-icons/md';
 
+let uploaded = false;
+
 class Final extends Component {
 
     state = {
@@ -65,7 +67,6 @@ class Final extends Component {
     processUpload = uploadedFiles => {
         const data = new FormData();
         const projectID = localStorage.getItem('ProjectID');
-        const urlimg = "";
 
         data.append('file', uploadedFiles.file, uploadedFiles.name);
 
@@ -87,11 +88,16 @@ class Final extends Component {
                 id: response.data.key,
                 url: response.data.url,
             });
+            const urlimg = response.data.url;
 
-            /*await api.put(`/projects/${projectID}`, {
-                urlimg: response.data.url,
-            });*/
-
+            if(!uploaded) {
+                await api.post(`/projects/${projectID}`, null, {
+                    headers: {
+                        urlimg,
+                    },
+                });
+                uploaded = true;
+            }
         }).catch(() => {
             this.updateFile(uploadedFiles.id, {
                 error: true,
@@ -109,11 +115,11 @@ class Final extends Component {
 
     componentWillUnmount() {
         this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
+        uploaded = false;
     }
 
     render() {
         const { uploadedFiles } = this.state;
-
         return (
             <Container>
                 <Content>

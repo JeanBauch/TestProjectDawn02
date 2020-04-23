@@ -11,7 +11,7 @@ import logoImg from '../../assets/Logo.png';
 
 export default function Profile() {
     const [projects, setProjects] = useState([]);
-    const [images, setImages] = useState([]);
+    /*const [images, setImages] = useState([]);*/
     const history = useHistory();
 
     const teamId = localStorage.getItem('teamId');
@@ -28,7 +28,7 @@ export default function Profile() {
         })
     }, [teamId]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         async function fetchData(){
             await api.get('/projects/img').then(response => {
                 setImages(response.data);
@@ -37,7 +37,7 @@ export default function Profile() {
         fetchData();
     },[]);
 
-    /*function handleImages(id) {
+    function handleImages(id) {
         const imagesProject = images.map(img => {
             return img.project === id ? { ...img, sin: true } : null
         });
@@ -76,7 +76,7 @@ export default function Profile() {
                 </Link>
                 <span>Bem vindo, {teamName}</span>
 
-                <Link className="button" to="/projects/new">Cadastrar novo caso</Link>
+                <Link className="button" to="/projects/new">Cadastrar novo projeto</Link>
                 <button onClick={handleProfile} type="button">
                     <FiUser size={18} color="#00E0FF" />
                 </button>
@@ -91,25 +91,14 @@ export default function Profile() {
             <ul>
                 {projects.map(project => (
                     <li key={ project.id }>
-                        <strong>Caso: </strong>
+                        <strong>Projeto: </strong>
                         <p>{project.title}</p>
 
                         <strong>Descrição:</strong>
                         <p>{project.description}</p>
 
-                        <strong>
-                            Imagem:
-                                {images.map(img => (
-                                    <ul key={img.key}>
-                                        {img.project == project.id && ( 
-                                            <li>
-                                                <img alt="img_project" src={img.url}></img>
-                                            </li>
-                                        )}
-                                    </ul>
-                                ))}
-                            
-                        </strong>
+                        <strong>Logo:</strong>
+                        <img src={project.url} alt="Logo do Projeto"></img>
 
                         <button onClick={() => handleDeleteProject(project.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />

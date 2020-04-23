@@ -44,16 +44,15 @@ module.exports = {
     },
 
     
-    /*async insertURL(request, response) {
-        const urlimg = request.payload;
+    async insertURL(request, response) {
+        const urlimg = request.headers.urlimg;
         const id = request.params.id;
         
-        console.log(urlimg);
         await connection('projects').where('id',id).update({
             url: urlimg,
-        })
+        });
         return response.json({ urlimg });
-    },*/
+    },
 
 
     async delete(request, response) {
