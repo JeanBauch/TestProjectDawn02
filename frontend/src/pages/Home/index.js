@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
+
 /*const images = [
   {
     url: '/static/images/grid-list/breakfast.jpg',
@@ -118,7 +119,7 @@ export default function Home() {
         api.get('projects', {
         }).then(response => {
             setProjects(response.data);
-            
+     
         })
     }, []);
 
@@ -139,6 +140,11 @@ export default function Home() {
         history.push("/project/page")
     }
 
+    function handleSearch(value)
+    {
+        console.log(value);
+    }
+
     return (
         <div>
             <div className="header-container">
@@ -147,7 +153,7 @@ export default function Home() {
                         <img src={logoImg} alt="Project Dawn" />
                     </Link>
                     <span>Bem vindo, {teamName}</span>
-
+                    
                     <Link className="buttonHmCadastro" to="/projects/new">Cadastrar novo caso</Link>
                     <button onClick={handleProfile} type="button">
                         <FiUser size={20} color="#00E0FF" />

@@ -54,8 +54,7 @@ export default function ProjectPage()
             }
         }).then(response => {
             setProject(response.data[0]);
-          
-        })
+         })
     }, []);
     useEffect(() => {
         api.get('images', {
