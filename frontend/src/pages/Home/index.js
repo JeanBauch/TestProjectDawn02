@@ -118,6 +118,7 @@ export default function Home() {
         api.get('projects', {
         }).then(response => {
             setProjects(response.data);
+            
         })
     }, []);
 

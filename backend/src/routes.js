@@ -56,5 +56,5 @@ routes.delete('/projects/img/:id', ImageController.delete);
 
 routes.post('/projects/:id', ProjectController.insertURL);
 routes.get('/project',ProjectController.page)
-
+routes.get('/images',ImageController.imageProject)
 module.exports = routes;

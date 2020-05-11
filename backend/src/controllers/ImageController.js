@@ -7,6 +7,15 @@ module.exports = {
         const img = await connection('images').select('*');
         return response.json(img);
     },
+    async imageProject(request,response)
+    {
+        const id = request.headers.id;
+        const images = await connection('images')
+            .where('project',id)
+            .select('*')
+
+        return response.json(images);
+    },
 
     /*async searchById(request,response) {
         const projectid = request.headers.projectid;
@@ -43,7 +52,7 @@ module.exports = {
 
     async delete(req,res) {
         const { id } = req.params; 
-        const img = await connection('images').where('key',id).delete();
+        await connection('images').where('key',id).delete();
         
         s3.deleteObject({
             Bucket: "upload-image-pd",

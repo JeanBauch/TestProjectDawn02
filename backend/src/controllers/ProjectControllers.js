@@ -2,7 +2,7 @@ const connection = require('../database/connection')
 
 module.exports = {
     async index(request, response) {
-        const { page = 1 } = request.query;         // rota = /projects?page=1
+                // rota = /projects?page=1
         
         const [count] = await connection('projects').count();      //Irá retornar: 'count(*): numero total de projetos'
 
@@ -79,9 +79,6 @@ module.exports = {
         const project = await connection('projects')
             .where('id',id)
             .select('*')
-        
-       
-
         
         return response.json(project);
     }

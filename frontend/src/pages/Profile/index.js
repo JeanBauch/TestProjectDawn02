@@ -55,7 +55,7 @@ export default function Profile() {
 
             setProjects(projects.filter(project => project.id !== id));
         } catch (err) {
-            alert('Erro ao deletar caso, tente novamente.');
+            //alert('Erro ao deletar caso, tente novamente.');
         }
     }
 

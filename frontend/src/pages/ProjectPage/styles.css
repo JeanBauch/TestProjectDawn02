@@ -1,0 +1,48 @@
+.project-container{
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 60px auto;
+    min-height: 100vh;
+   
+   
+    
+}
+
+.infos{
+      min-width: 500px;
+      color: #00e0ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      
+      
+
+}
+#title{
+    
+    font-size: 80px;
+   
+}
+#description{
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+    margin: 80px auto;
+    font-size: 30px;
+  
+ 
+}
+#imageLogo{
+
+    margin-top: 50px;
+    max-width: 600px;
+    max-height: 400px;
+}
+
+.principal{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
