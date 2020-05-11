@@ -71,5 +71,18 @@ module.exports = {
         await connection('projects').where('id', id).delete();
 
         return response.status(204).send(); // cod 204 é No content (resposta com sucesso sem conteudo)
+    },
+    async page(request,response)
+    {
+        const id = request.headers.id;
+        
+        const project = await connection('projects')
+            .where('id',id)
+            .select('*')
+        
+       
+
+        
+        return response.json(project);
     }
 };

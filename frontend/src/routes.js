@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import NewProject from './pages/NewProject';
 import Home from './pages/Home';
 import NewProjectImage from './pages/NewProjectImage'
+import ProjectPage from './pages/ProjectPage';
 
 export default function Routes() {
     return (
@@ -18,6 +19,7 @@ export default function Routes() {
                 <Route path="/profile" component={Profile} />
                 <Route path="/projects/new" component={NewProject} />
                 <Route path="/projects/img" component={NewProjectImage} />
+                <Route path="/project/page" component={ProjectPage} />
             </Switch>
         </BrowserRouter>
     );

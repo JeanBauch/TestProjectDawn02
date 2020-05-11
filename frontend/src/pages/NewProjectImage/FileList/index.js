@@ -21,7 +21,7 @@ const FileList = ( { files, onDelete } ) => (
                 </FileInfo>
 
             <div>
-                {!uploadedFile.uploaded && !uploadedFile.error && (
+            {!uploadedFile.uploaded && !uploadedFile.error && (
                     <CircularProgressbar
                         styles={{
                             root: { width: 24 },
@@ -45,6 +45,7 @@ const FileList = ( { files, onDelete } ) => (
                 {uploadedFile.uploaded && <MdCheckCircle size={24} color="#78e5d5" />}
                 {uploadedFile.error && <MdError size={24} color="#e57878" />}
 
+              
             </div>
         </li>
         ))}
