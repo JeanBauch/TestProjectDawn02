@@ -31,7 +31,7 @@ export default function NewProjectImage() {
                     
                     <Link className="back-link" to="/profile">
                         <FiArrowLeft size={16} color="#00E0FF" />
-                        Voltar para home
+                        Voltar para Profile
                     </Link>
 
                 </section>

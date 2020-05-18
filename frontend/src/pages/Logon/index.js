@@ -33,7 +33,7 @@ export default function Logon() {
     return (
         <div className="logon-container">
             <section className="form">
-                <Link id="btnHome" to="/">
+                <Link id="btnHome" to="/home">
                     <img src={logoImg} alt="Project Dawn" />
                 </Link>
                 <form onSubmit={handleLogin}>

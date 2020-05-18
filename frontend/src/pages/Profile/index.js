@@ -61,7 +61,7 @@ export default function Profile() {
 
     function handleLogout() {
         localStorage.clear();
-        history.push('/');
+        history.push('/home');
     }
 
     function handleProfile() {
@@ -71,7 +71,7 @@ export default function Profile() {
     return (
         <div className="profile-container">
             <header>
-                <Link id="btnHome" to="/">
+                <Link id="btnHome" to="/home">
                     <img src={logoImg} alt="Project Dawn" />
                 </Link>
                 <span>Bem vindo, {teamName}</span>

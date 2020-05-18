@@ -8,12 +8,14 @@ import NewProject from './pages/NewProject';
 import Home from './pages/Home';
 import NewProjectImage from './pages/NewProjectImage'
 import ProjectPage from './pages/ProjectPage';
+import Initial from './pages/Initial';
 
 export default function Routes() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={Home} />
+                <Route path="/" exact component={Initial} />
+                <Route path="/home" exact component={Home} />
                 <Route path="/login" exact component={Logon} />
                 <Route path="/register" component={Register} />
                 <Route path="/profile" component={Profile} />

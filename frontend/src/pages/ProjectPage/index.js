@@ -23,11 +23,12 @@ const useStyles = makeStyles((theme) => ({
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
+      
     },
     gridList: {
-      width: 'auto',
-      height: 450,
+      
+      width:'auto',
+      flexWrap: 'nowrap',
     },
     icon: {
       color: 'rgba(255, 255, 255, 0.54)',
@@ -70,7 +71,7 @@ export default function ProjectPage()
 
     function handleLogout() {
         localStorage.clear();
-        history.push('/');
+        history.push('/home');
     }
 
     function handleProfile() {
@@ -84,7 +85,7 @@ export default function ProjectPage()
         <div>
         <div className="header-container">
             <header>
-                <Link id="btnHome" to="/">
+                <Link id="btnHome" to="/home">
                     <img src={logoImg} alt="Project Dawn" />
                 </Link>
                 <span>Bem vindo, {teamName}</span>
@@ -107,28 +108,31 @@ export default function ProjectPage()
                     <div className="principal">
                         <p id="title">{project.title}</p>
                         <img id="imageLogo" src={project.url} alt="Logo do Projeto"></img>
-                        <p id="description">{project.description}</p>
+                        <p className="description">{project.description}</p>
                     </div>
                     <div className="images">
-                   <div className={classes.root}>
-                        <GridList cellHeight={180} className={classes.gridList}>
-                            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                            </GridListTile>
-                            {images.map((tile) => (
-                            <GridListTile key={tile.key}>
-                                <img src={tile.url} alt={tile.name} />
-                                <GridListTileBar
-                                title={tile.name}
-                                actionIcon={
-                                    <IconButton aria-label={`info about ${tile.url}`} href={tile.url} className={classes.icon}>
-                                    <InfoIcon />
-                                    </IconButton>
-                                }
-                                />
-                            </GridListTile>
-                            ))}
-                        </GridList>
-                        </div>
+                    <div className={classes.root}>
+                    <GridList className={classes.gridList} cols={images.length} >
+                        {images.map((tile) => (
+                        <GridListTile key={tile.key}>
+                            <img id="imageList" src={tile.url} alt={tile.name}  />
+                            <GridListTileBar
+                            title={tile.name}
+                            classes={{
+                                root: classes.titleBar,
+                                title: classes.title,
+                            }}
+                            actionIcon={
+                                <IconButton aria-label={`info about ${tile.url}`} href={tile.url} className={classes.icon}>
+                                <InfoIcon />
+                                </IconButton>
+                            }
+                            />
+                        </GridListTile>
+                        ))}
+                    </GridList>
+            </div>
+                  
                     </div>
     
                 </div>
