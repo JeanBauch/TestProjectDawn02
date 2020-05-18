@@ -17,7 +17,7 @@ export default function Initial(){
         <div className="initial-container">
             <div className="initial-first">
                 <img src={logoImg}></img>
-                <label id="logo">O Alvorecer dos Projetos</label>
+                <label id="logo">O Alvorecer dos novos Projetos</label>
             </div>
             <div className="initial-second">
                 <Link to="/home">
