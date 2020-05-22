@@ -81,5 +81,44 @@ module.exports = {
             .select('*')
         
         return response.json(project);
-    }
+    },
+
+    async vote(request,response){
+        const {id_team,id_project,vote} = request.body.data;
+        
+        await connection('vote').insert({
+            id_team,
+            id_project,
+            vote,
+        })
+        return response.json({id_team,id_project,vote});
+    },
+    async updateVote(request,response){
+        const {id_team,id_project,vote} = request.body.data;
+        const update = await connection('vote').update({
+            vote,
+        })
+        .where('id_project',id_project)
+        .where('id_team',id_team)
+        console.log(update);
+
+
+        return response.json(update);
+    },
+
+    async viewVotes(request,response){
+       
+        const {id_team,id} = request.headers;
+
+      
+        const vote = await connection('vote')
+            .where('id_project',id)
+            .where('id_team',id_team)
+            .select('vote')
+
+
+        return response.json(vote);
+    },
+    
+    
 };

@@ -39,6 +39,7 @@ export default function ProjectPage()
 {
     const [project,setProject] = useState({});
     const [images,setImages] = useState([]);
+    const [vote,setVote] = useState();
     const id = localStorage.getItem("projectID");
     const history = useHistory();
 
@@ -47,7 +48,7 @@ export default function ProjectPage()
 
     const classes = useStyles();
 
-
+    
     useEffect(() => {
         api.get('project', {
             headers: {
@@ -57,6 +58,7 @@ export default function ProjectPage()
             setProject(response.data[0]);
          })
     }, []);
+
     useEffect(() => {
         api.get('images', {
             headers: {
@@ -67,7 +69,61 @@ export default function ProjectPage()
           
         })
     }, []);
+
+    useEffect(()=>{
+        api.get('project/vote',{
+            headers:{
+                id_team:teamId,
+                id,
+            }
+        }).then(response =>{
+            if(response.data.length == 0)
+                setVote(0);
+            else
+                setVote(response.data[0].vote);
+        })
+    },[vote]);
+
+    const handlePreventDefault = e =>{
+        e.preventDefault();
+    }
     
+    async function handleVote(id_project,value = 10){
+        console.log(vote);
+        if(vote == 0)
+        {
+            try{
+                const response = await api.post('/project/vote',{
+                    data:{
+                        id_team: teamId,
+                        id_project,
+                        vote:value,
+                    }   
+                })
+    
+            }catch(error){
+                alert('Falha ao votar, tente novamente.');
+            }
+        
+        }
+        else
+        {
+            try{
+                const response = await api.post('/project/vote/update',{
+                    data:{
+                        id_team: teamId,
+                        id_project,
+                        vote:value,
+                    }   
+                })
+    
+            }catch(error){
+                alert('Falha ao atualizar, tente novamente.');
+            }
+        }
+          
+
+    }
 
     function handleLogout() {
         localStorage.clear();
@@ -109,6 +165,10 @@ export default function ProjectPage()
                         <p id="title">{project.title}</p>
                         <img id="imageLogo" src={project.url} alt="Logo do Projeto"></img>
                         <p className="description">{project.description}</p>
+                        <form onClick={handlePreventDefault}>
+                            <button type="submit" onClick={()=> handleVote(project.id)} >Votar</button>
+                        </form>
+                         <p >{vote}</p>
                     </div>
                     <div className="images">
                     <div className={classes.root}>
@@ -130,6 +190,7 @@ export default function ProjectPage()
                             />
                         </GridListTile>
                         ))}
+                        
                     </GridList>
             </div>
                   

@@ -6,7 +6,7 @@ const ProjectController = require('./controllers/ProjectControllers');
 const ProfileController = require('./controllers/ProfileController');
 const SessionController = require('./controllers/SessionController');
 const ImageController = require('./controllers/ImageController');
-
+const VotesController = require('./controllers/VotesController');
 const multer  = require("multer");
 const multerConfig = require("./config/multer");
 const routes = express.Router();    // Desacoplando as rotas do express, em uma nova variavel
@@ -55,6 +55,17 @@ routes.get('/projects/img', ImageController.index);
 routes.delete('/projects/img/:id', ImageController.delete);
 
 routes.post('/projects/:id', ProjectController.insertURL);
-routes.get('/project',ProjectController.page)
-routes.get('/images',ImageController.imageProject)
+routes.get('/project',ProjectController.page);
+routes.get('/images',ImageController.imageProject);
+
+routes.post('/project/vote',ProjectController.vote);
+routes.post('/project/vote/update',ProjectController.updateVote);
+
+
+routes.get('/project/vote',ProjectController.viewVotes);
+routes.get('/votes',VotesController.index);
+routes.delete('/votes/deleteall',VotesController.deleteAll);
+
+routes.get('/project/averagevotes',VotesController.averageVote);
+
 module.exports = routes;
