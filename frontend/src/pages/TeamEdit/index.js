@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -7,16 +7,34 @@ import './styles.css';
 
 import logoImg from '../../assets/logoMaior.png';
 
-export default function Register() {
+export default function TeamEdit() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
 
-    const history = useHistory();
 
-    async function handleRegister(e) {
+    const history = useHistory();
+    const teamId = localStorage.getItem('teamId');
+    const teamName = localStorage.getItem('teamName');
+    
+    useEffect(() => {
+        api.get('team', {
+            headers: {
+                Authorization: teamId,
+            }
+        }).then(response => {
+            setName(response.data[0].name);
+            setEmail(response.data[0].email);
+            setWhatsapp(response.data[0].whatsapp);
+            setCity(response.data[0].city);
+            setUf(response.data[0].uf);
+           console.log(response.data[0]);
+        })
+    }, []);
+
+    async function handleUpdate(e) {
         e.preventDefault();
         const data = {
             name,
@@ -27,12 +45,15 @@ export default function Register() {
         };
 
         try {
-            const response = await api.post('teams', data);
-            alert(`Seu ID de acesso: ${response.data.id}`);
-            
+            const response = await api.post('teams/edit', data,{
+                headers:{
+                    Authorization: teamId,
+                }
+            });
+            localStorage.setItem('teamName',name);
             history.push('/home');
         } catch (err) {
-            alert('Erro no cadastro, tente novamente.');
+            alert('Erro na alteração, tente novamente.');
         }
     }
 
@@ -43,8 +64,8 @@ export default function Register() {
                 <section>
                     <img src={logoImg} alt="Project Dawn" />
 
-                    <h1>Cadastro</h1>
-                    <p>Faça seu cadastro, entre na plataforma e compartilhe seu projeto.</p>
+                    <h1>Alterar</h1>
+                    <p>Faça suas alterações.</p>
                     
                     <Link className="back-link" to="/home">
                         <FiArrowLeft size={16} color="#00E0FF" />
@@ -53,7 +74,7 @@ export default function Register() {
 
                 </section>
 
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleUpdate}>
                     <input
                         placeholder="Nome do grupo"
                         value={name}
@@ -86,7 +107,7 @@ export default function Register() {
                         />
                     </div>
 
-                    <button className="button" type="submit">Cadastrar</button> 
+                    <button className="button" type="submit">Editar</button> 
                 </form>
             </div>
         </div>
