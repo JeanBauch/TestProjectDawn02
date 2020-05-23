@@ -10,7 +10,7 @@ import NewProjectImage from './pages/NewProjectImage'
 import ProjectPage from './pages/ProjectPage';
 import Initial from './pages/Initial';
 import TeamEdit from './pages/TeamEdit';
-
+import ProjectEdit from './pages/ProjectEdit';
 
 export default function Routes() {
     return (
@@ -25,6 +25,7 @@ export default function Routes() {
                 <Route path="/projects/img" component={NewProjectImage} />
                 <Route path="/project/page" component={ProjectPage} />
                 <Route path="/team/edit" component={TeamEdit} />
+                <Route path="/project/edit" component={ProjectEdit} />
 
             </Switch>
         </BrowserRouter>

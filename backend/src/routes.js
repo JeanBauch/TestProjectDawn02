@@ -68,6 +68,8 @@ routes.delete('/votes/deleteall',VotesController.deleteAll);
 
 routes.get('/project/averagevotes',VotesController.averageVote);
 
-routes.post('/teams/edit',TeamController.edit)
+routes.post('/teams/edit',TeamController.edit);
+routes.post('/project/edit',ProjectController.edit)
+
 routes.get('/team',TeamController.byId);
 module.exports = routes;

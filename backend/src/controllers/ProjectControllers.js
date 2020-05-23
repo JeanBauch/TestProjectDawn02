@@ -119,6 +119,21 @@ module.exports = {
 
         return response.json(vote);
     },
+
+    async edit(request, response) {
+        const { title, description } = request.body;
+        const id = request.headers.id;
+        const team_id = request.headers.authorization;
+        const project = await connection('projects').update({
+            title,
+            description,
+        
+        })
+        .where('id',id)
+        .where('team_id',team_id);
+       
+        return response.json(project);
+    },
     
     
 };
