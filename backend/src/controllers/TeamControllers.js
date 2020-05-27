@@ -28,9 +28,7 @@ module.exports = {
         const {name, email, whatsapp, city, uf} = request.body;
         const team_id = request.headers.authorization;
 
-        console.log(request.body);
-        console.log(team_id);
-        
+      
         await connection('teams').update({
             name,
             email,
@@ -50,6 +48,30 @@ module.exports = {
     
         return response.json(team);
 
-    }
+    },
+    async delete(request, response) {
+        const id = request.headers.authorization;  // Isso para verificar se é o msm time
+     
+        const project = await connection('projects')
+            .where('team_id', id)
+            .select('id')
+     
+
+        project.forEach(async projectid => {
+            const images = await connection('images').where('project',projectid).select('key');
+      
+            images.forEach(id=>{
+                s3.deleteObject({
+                    Bucket: "upload-image-pd",
+                    Key: id.key,
+                }).promise();
+            });
+            await connection('images').where('project',projectid).delete();
+        })
+        await connection('projects').where('team_id',id).delete();
+        await connection('teams').where('id', id).delete();
+
+        return response.status(204).send(); // cod 204 é No content (resposta com sucesso sem conteudo)
+    },
    
 };

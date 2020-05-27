@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft,FiTrash2 } from 'react-icons/fi';
 
 import api from '../../services/api'
 import './styles.css';
@@ -33,6 +33,21 @@ export default function TeamEdit() {
            console.log(response.data[0]);
         })
     }, []);
+
+    async function handleDeleteTeam()
+    {
+        api.delete('/team/delete',{ 
+            headers:{
+                Authorization: teamId,
+            }
+        }).then(response =>{
+            handleLogout();
+        })
+    }
+    function handleLogout() {
+        localStorage.clear();
+        history.push('/home');
+    }
 
     async function handleUpdate(e) {
         e.preventDefault();
@@ -71,14 +86,19 @@ export default function TeamEdit() {
                         <FiArrowLeft size={16} color="#00E0FF" />
                         Voltar a home
                     </Link>
+                    
 
                 </section>
-
+                
                 <form onSubmit={handleUpdate}>
+                    <button className="button" onClick={handleDeleteTeam}>
+                        Deletar Time
+                    </button>
                     <input
                         placeholder="Nome do grupo"
                         value={name}
                         onChange={e => setName(e.target.value)}
+                        required
                     />
 
                     <input
@@ -86,11 +106,13 @@ export default function TeamEdit() {
                         placeholder = "E-mail"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                        required
                     />
                     <input 
                         placeholder = "Whatsapp"
                         value={whatsapp}
                         onChange={e => setWhatsapp(e.target.value)}
+                        required
                     />
 
                     <div className="input-group">
@@ -98,12 +120,14 @@ export default function TeamEdit() {
                             placeholder="Cidade" 
                             value={city}
                             onChange={e => setCity(e.target.value)}
+                            required
                         />
                         <input 
                             placeholder="UF" 
                             style={ { width:80} } 
                             value={uf}
                             onChange={e => setUf(e.target.value)}
+                            required
                         />
                     </div>
 

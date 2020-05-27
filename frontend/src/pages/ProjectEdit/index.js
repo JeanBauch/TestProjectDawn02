@@ -77,12 +77,14 @@ export default function EditProject() {
                         placeholder="Título do projeto" 
                         value={title}
                         onChange={e => setTitle(e.target.value)}
+                        required
                     />
 
                     <textarea 
                         placeholder = "Descrição"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
+                        required
                     />
                     <button className="button" type="submit">Cadastrar</button> 
                 </form>

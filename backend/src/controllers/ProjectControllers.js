@@ -1,4 +1,7 @@
-const connection = require('../database/connection')
+const connection = require('../database/connection');
+const aws = require("aws-sdk");
+const s3 = new aws.S3();
+
 
 module.exports = {
     async index(request, response) {
@@ -69,6 +72,15 @@ module.exports = {
         }
 
         await connection('projects').where('id', id).delete();
+        const images = await connection('images').where('project',id).select('key');
+      
+        images.forEach(id=>{
+            s3.deleteObject({
+                Bucket: "upload-image-pd",
+                Key: id.key,
+            }).promise();
+        });
+        await connection('images').where('project',id).delete(); 
 
         return response.status(204).send(); // cod 204 é No content (resposta com sucesso sem conteudo)
     },

@@ -57,6 +57,8 @@ routes.delete('/projects/img/:id', ImageController.delete);
 routes.post('/projects/:id', ProjectController.insertURL);
 routes.get('/project',ProjectController.page);
 routes.get('/images',ImageController.imageProject);
+routes.get('/allimages',ImageController.index);
+
 
 routes.post('/project/vote',ProjectController.vote);
 routes.post('/project/vote/update',ProjectController.updateVote);
@@ -72,4 +74,5 @@ routes.post('/teams/edit',TeamController.edit);
 routes.post('/project/edit',ProjectController.edit)
 
 routes.get('/team',TeamController.byId);
+routes.delete('/team/delete',TeamController.delete);
 module.exports = routes;

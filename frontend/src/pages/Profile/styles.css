@@ -106,7 +106,7 @@
     grid-gap: 24px;
     list-style: none;
 }
-/*
+
 .profile-container ul li {
     background: rgb(0, 0, 0);
     padding: 24px;
@@ -120,6 +120,9 @@
     top: 24px;
     border: 0;
     background-color: black;
+}
+#settings{
+    top: 75px;
 }
 
 .profile-container ul li button:hover {
@@ -147,7 +150,7 @@
     max-height: 150px;
     border-radius: 5px;
     margin-right: 10px;
-}*/
+}
 .MuiTypography-colorTextSecondary {
     color: white;
 }
