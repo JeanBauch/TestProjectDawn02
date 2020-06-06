@@ -1,14 +1,13 @@
 import React, { useState ,useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower } from 'react-icons/fi';
-import { FiUser } from 'react-icons/fi';
+import { FiPower,FiUser ,FiSearch } from 'react-icons/fi';
+
 
 import api from '../../services/api';
 
 import './styles.css';
 
 import logoImg from '../../assets/Logo.png';
-
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
@@ -109,6 +108,8 @@ export default function Home() {
     const classes = useStyles();
     const [projects, setProjects] = useState([]);
     const history = useHistory();
+    const [search,setSearch] = useState('');
+    const [home,setHome] = useState(0);
 
     const teamId = localStorage.getItem('teamId');
     const teamName = localStorage.getItem('teamName');
@@ -116,12 +117,12 @@ export default function Home() {
 
 
     useEffect(() => {
-        api.get('projects', {
+        api.get('/projects/order', {
         }).then(response => {
             setProjects(response.data);
-     
+            setHome(0);
         })
-    }, []);
+    }, [home]);
 
     function handleLogout() {
         localStorage.clear();
@@ -140,9 +141,21 @@ export default function Home() {
         history.push("/project/page")
     }
 
-    function handleSearch(value)
+    function handleSearch(e)
     {
-        console.log(value);
+      e.preventDefault();
+      api.get('/project/filter',{
+        params:{
+          search,
+        }
+
+      }).then(response =>{
+        setProjects(response.data);
+      })
+      
+    }
+    function handleReset(){
+      setHome(1);
     }
 
     return (
@@ -150,10 +163,21 @@ export default function Home() {
             <div className="header-container">
                 <header>
                     <Link id="btnHome" to="/home">
-                        <img src={logoImg} alt="Project Dawn" />
+                        <img src={logoImg} alt="Project Dawn" onClick={handleReset}  />
                     </Link>
                     <span>Bem vindo, {teamName}</span>
-                    
+                    <form onSubmit={handleSearch}>
+                      <input
+                          id="search"
+                          placeholder="Digite o nome do projeto" 
+                          value={search}
+                          onChange={e => setSearch(e.target.value)}
+                          required
+                      />
+                     
+  
+                    </form>
+                    <FiSearch color='white'/>
                     <Link className="buttonHmCadastro" to="/projects/new">Cadastrar novo caso</Link>
                     <button onClick={handleProfile} type="button">
                         <FiUser size={20} color="#00E0FF" />

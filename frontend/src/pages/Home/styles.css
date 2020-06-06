@@ -78,7 +78,15 @@
     border-radius: 8px;
     position: relative;
 }
-
+#search{
+    margin-left: 40px;
+    
+    border: 1px solid #2f2f31;
+    background-color: #070707;
+    height: 50px;
+    color: whitesmoke;
+    
+}
 
 
 

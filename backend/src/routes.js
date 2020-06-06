@@ -37,9 +37,10 @@ routes.get('/projects', celebrate({
     })
 }),ProjectController.index);
 
+routes.get('/projects/order',ProjectController.orderBy);
 // Fazer do novo projeto...
 routes.post('/projects', ProjectController.create);
-
+routes.get('/project/filter', ProjectController.filter);
 
 routes.delete('/projects/:id', celebrate({
     [Segments.PARAMS]: Joi.object().keys({

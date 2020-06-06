@@ -25,6 +25,42 @@ module.exports = {
 
         return response.json(projects)
     },
+    async orderBy(request, response) {
+        
+        const [count] = await connection('projects').count();     
+
+        const projects = await connection('projects')
+            .join('vote','id_project','=','projects.id')
+            .orderBy(connection.raw('AVG(vote.vote)'),'desc')
+            .groupBy('projects.title')
+            .distinct()              
+            .select(['projects.*',connection.raw('AVG(vote.vote)')]);  
+            
+
+        response.header('X-Total-Count', count['count(*)']);  // O numero total de projetos é passada no Headers e não no body
+
+        return response.json(projects)
+        },
+    async filter(request, response) {
+        const {search} = request.query
+       
+        const [count] = await connection('projects').count();     
+
+        const projects = await connection('projects')
+            .join('vote','id_project','=','projects.id')
+            .orderBy(connection.raw('AVG(vote.vote)'),'desc')
+            .groupBy('projects.title')
+            .distinct()
+            .select(['projects.*',connection.raw('AVG(vote.vote)')]);  
+            
+        const filteredProjects = projects.filter(project =>{
+            return project.title.includes(search);
+        })
+    
+        response.header('X-Total-Count', count['count(*)']);  // O numero total de projetos é passada no Headers e não no body
+
+        return response.json(filteredProjects); 
+        },
 
     async create(request, response) {
         const { title, description } = request.body;
@@ -45,6 +81,7 @@ module.exports = {
         response.header('ProjectID', id);
         return response.json({ id });
     },
+    
 
     
     async insertURL(request, response) {
