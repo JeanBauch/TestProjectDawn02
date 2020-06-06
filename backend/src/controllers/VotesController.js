@@ -5,6 +5,13 @@ module.exports = {
         const votes = await connection('vote').select('*');
         return response.json(votes);
     },
+    async count(request, response) {
+        const {id} = request.params;
+        const votes = await connection('vote').avg('vote as vote').where('id_project',id);
+        const {vote} = votes[0]; 
+      
+        return response.json(vote);
+    },
     async averageVote(request,response){
         const {id} = request.headers;
 

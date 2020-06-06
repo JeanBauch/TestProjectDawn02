@@ -46,3 +46,7 @@
 #imageList{
     max-width: 350px;
 }
+.vote{
+    display: flex;
+  
+}

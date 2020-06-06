@@ -66,6 +66,7 @@ routes.post('/project/vote/update',ProjectController.updateVote);
 
 routes.get('/project/vote',ProjectController.viewVotes);
 routes.get('/votes',VotesController.index);
+routes.get('/votes/:id',VotesController.count);
 routes.delete('/votes/deleteall',VotesController.deleteAll);
 
 routes.get('/project/averagevotes',VotesController.averageVote);

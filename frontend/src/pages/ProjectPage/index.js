@@ -16,6 +16,9 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 //import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,9 +42,10 @@ export default function ProjectPage()
 {
     const [project,setProject] = useState({});
     const [images,setImages] = useState([]);
-    const [vote,setVote] = useState();
+    const [vote,setVote] = useState(0);
     const id = localStorage.getItem("projectID");
     const history = useHistory();
+    const [totalVote,setTotalVote] = useState(0);
 
     const teamId = localStorage.getItem('teamId');
     const teamName = localStorage.getItem('teamName');
@@ -81,14 +85,24 @@ export default function ProjectPage()
                 setVote(0);
             else
                 setVote(response.data[0].vote);
+
         })
     },[vote]);
+
+    useEffect(()=>{
+        api.get(`/votes/${id}`).then(response =>{
+           if(response.data != null)
+                setTotalVote(response.data);
+   
+        })
+    },[vote]);
+
 
     const handlePreventDefault = e =>{
         e.preventDefault();
     }
     
-    async function handleVote(id_project,value = 10){
+    async function handleVote(id_project,value){
         console.log(vote);
         if(vote == 0)
         {
@@ -104,6 +118,7 @@ export default function ProjectPage()
             }catch(error){
                 alert('Falha ao votar, tente novamente.');
             }
+            console.log(vote);
         
         }
         else
@@ -165,10 +180,27 @@ export default function ProjectPage()
                         <p id="title">{project.title}</p>
                         <img id="imageLogo" src={project.url} alt="Logo do Projeto"></img>
                         <p className="description">{project.description}</p>
-                        <form onClick={handlePreventDefault}>
-                            <button type="submit" onClick={()=> handleVote(project.id)} >Votar</button>
-                        </form>
-                         <p >{vote}</p>
+                        <div className="vote">
+                            <div id="votar">
+                                <Box component="fieldset" mb={3} marginRight="20px" borderColor="transparent">
+                                    <Typography component="legend">Votar</Typography>
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={vote}
+                                        onChange={(event, newValue) => {
+                                        setVote(newValue);
+                                        handleVote(project.id,newValue);
+                                    }}
+                                    />
+                                </Box>
+                            </div>
+                            <div id="votos">
+                                <Box component="fieldset" mb={3} marginLeft="20px" borderColor="transparent">
+                                    <Typography component="legend">Total de votos</Typography>
+                                    <Rating name="read-only" value={totalVote} readOnly />
+                                </Box>
+                            </div>
+                        </div>    
                     </div>
                     <div className="images">
                     <div className={classes.root}>
