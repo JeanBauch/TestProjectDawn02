@@ -30,7 +30,7 @@ export default function Register() {
             const response = await api.post('teams', data);
             alert(`Seu ID de acesso: ${response.data.id}`);
             
-            history.push('/home');
+            history.push('/login');
         } catch (err) {
             alert('Erro no cadastro, tente novamente.');
         }
@@ -46,9 +46,9 @@ export default function Register() {
                     <h1>Cadastro</h1>
                     <p>Faça seu cadastro, entre na plataforma e compartilhe seu projeto.</p>
                     
-                    <Link className="back-link" to="/home">
+                    <Link className="back-link" to="/login">
                         <FiArrowLeft size={16} color="#00E0FF" />
-                        Voltar a home
+                        Voltar a tela de login
                     </Link>
 
                 </section>

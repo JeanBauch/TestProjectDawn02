@@ -27,6 +27,7 @@ module.exports = {
     async deleteAll(request,response)
     {
         await connection('vote').delete();
+        return response.json({response:true});
     }
 
 };

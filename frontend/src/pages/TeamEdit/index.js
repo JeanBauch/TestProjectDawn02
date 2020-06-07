@@ -66,7 +66,7 @@ export default function TeamEdit() {
                 }
             });
             localStorage.setItem('teamName',name);
-            history.push('/home');
+            history.push('/profile');
         } catch (err) {
             alert('Erro na alteração, tente novamente.');
         }
@@ -82,9 +82,9 @@ export default function TeamEdit() {
                     <h1>Alterar</h1>
                     <p>Faça suas alterações.</p>
                     
-                    <Link className="back-link" to="/home">
+                    <Link className="back-link" to="/profile">
                         <FiArrowLeft size={16} color="#00E0FF" />
-                        Voltar a home
+                        Voltar a profile
                     </Link>
                     
 

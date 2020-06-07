@@ -77,7 +77,11 @@ module.exports = {
             team_id,
             url: "",
         });
-        
+        await connection('vote').insert({
+                id_team:team_id,
+                id_project: id,
+                vote: 0,
+            })
         response.header('ProjectID', id);
         return response.json({ id });
     },

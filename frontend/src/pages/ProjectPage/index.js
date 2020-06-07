@@ -103,25 +103,8 @@ export default function ProjectPage()
     }
     
     async function handleVote(id_project,value){
-        console.log(vote);
-        if(vote == 0)
-        {
-            try{
-                const response = await api.post('/project/vote',{
-                    data:{
-                        id_team: teamId,
-                        id_project,
-                        vote:value,
-                    }   
-                })
-    
-            }catch(error){
-                alert('Falha ao votar, tente novamente.');
-            }
-            console.log(vote);
-        
-        }
-        else
+  
+        if(project.team_id == teamId)
         {
             try{
                 const response = await api.post('/project/vote/update',{
@@ -129,13 +112,50 @@ export default function ProjectPage()
                         id_team: teamId,
                         id_project,
                         vote:value,
-                    }   
+                    }  
+                    
                 })
-    
+                setVote(value); 
             }catch(error){
                 alert('Falha ao atualizar, tente novamente.');
             }
         }
+        else{
+            if(vote == 0)
+            {
+                try{
+                    const response = await api.post('/project/vote',{
+                        data:{
+                            id_team: teamId,
+                            id_project,
+                            vote:value,
+                        }   
+                    })
+        
+                }catch(error){
+                    alert('Falha ao votar, tente novamente.');
+                }
+            
+            
+            }
+            else
+            {
+                try{
+                    const response = await api.post('/project/vote/update',{
+                        data:{
+                            id_team: teamId,
+                            id_project,
+                            vote:value,
+                        }  
+                        
+                    })
+                    setVote(value); 
+                }catch(error){
+                    alert('Falha ao atualizar, tente novamente.');
+                }
+            }
+        }
+        
           
 
     }
