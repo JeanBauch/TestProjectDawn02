@@ -181,8 +181,10 @@ export default function ProjectPage()
                         <img id="imageLogo" src={project.url} alt="Logo do Projeto"></img>
                         <p className="description">{project.description}</p>
                         <div className="vote">
-                            <div id="votar">
-                                <Box component="fieldset" mb={3} marginRight="20px" borderColor="transparent">
+                            {
+                            teamId 
+                            ?  <div id="votar">
+                                    <Box component="fieldset" mb={3} marginRight="20px" borderColor="transparent">
                                     <Typography component="legend">Votar</Typography>
                                     <Rating
                                         name="simple-controlled"
@@ -192,8 +194,15 @@ export default function ProjectPage()
                                         handleVote(project.id,newValue);
                                     }}
                                     />
-                                </Box>
+                                    </Box>
+                                </div>
+                                
+                            :<div>
+                                <Typography component="legend">Faça Login para votar </Typography>
+                                <Link id="login" to="/login" width="100px">Login</Link>
                             </div>
+                            }
+                          
                             <div id="votos">
                                 <Box component="fieldset" mb={3} marginLeft="20px" borderColor="transparent">
                                     <Typography component="legend">Total de votos</Typography>
