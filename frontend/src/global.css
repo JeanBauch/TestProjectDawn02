@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    outline:0;
+    box-sizing: border-box;
+}
+
+/* Branco: #f0f0f5 -> Roxo: #281a41*/
+body {
+    font:400 14px Roboto, sans-serif;
+    background-image: linear-gradient(180deg, #0E0D0D 0%, rgba(255, 238, 238, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 91.15%, #000000 100%);
+    -webkit-font-smoothing: antialiased;
+}
+
+input, button, textarea {
+    font:400 18px Roboto, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+form input {
+    font:400 18px Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    height: 60px;
+    color: #333;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 0 24px;
+    background: #DBDBDB;
+}
+
+form textarea {
+    font:400 18px Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    resize: vertical;
+    min-height: 140px;
+    color: #333;
+    border: 1px solid #dcdce6;
+    border-radius: 8px;
+    padding: 16px 24px;
+    line-height: 24px;
+    background: #DBDBDB;
+}
+
+.button {
+    width: 100%;
+    height: 60px;
+    background: #00E0FF;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    transition: filter 0.2s;
+}
+
+.button:hover {
+    filter: brightness(90%);
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    color: #f0f0f5;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.back-link.form svg {
+    margin-right: 8px;
+}
+
+.back-link:hover {
+    opacity: 0.8;
+}
+
+
+#btnHome{
+    margin-left: 0;
+    box-sizing: content-box;
+    width:auto;
+}
+
+
+.buttonGestorProjeto{
+    width: 10px;
+    height: 45px;
+    border: 1px solid #00E0FF;
+    border-radius: 8px;
+    color: #00E0FF;
+    font-weight: 700;
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 45px;
+    transition: filter 0.2s;
+}
+
+.buttonGestorProjeto:hover{
+    filter: brightness(80%);
+}
+
+.buttonHmCadastro{
+    width: 10px;
+    height: 45px;
+    border: 1px solid #00E0FF;
+    border-radius: 8px;
+    color: #00E0FF;
+    font-weight: 700;
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 45px;
+    transition: filter 0.2s;
+}
+
+.buttonbuttonHmCadastro:hover {
+    filter: brightness(80%);
+}

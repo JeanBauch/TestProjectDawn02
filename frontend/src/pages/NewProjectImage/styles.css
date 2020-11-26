@@ -1,0 +1,44 @@
+.new-project-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-project-container .content {
+    width: 100%;
+    padding: 96px;
+    background: linear-gradient(180deg, #0E0D0D 0%, rgba(255, 238, 238, 0) 50%), linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, #000000 125%, #000000 50%);
+    box-shadow: 0 0 100px rbga(0,0,0.1);
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-project-container .content section {
+    width: 100%;
+    max-width: 380px;
+}
+
+.new-project-container .content section h1 {
+    margin: 64px 0 32px;
+    font-size: 32px;
+    color: #f0f0f5;
+}
+
+.new-project-container .content section p {
+    font-size: 18px;
+    color: rgb(180, 180, 180);
+    line-height: 32px;
+}
+
+.uploadImg {
+    display: flex;
+    flex-direction: column;
+}

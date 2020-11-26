@@ -1,0 +1,94 @@
+.project-container{
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 100px auto;
+    min-height: 100vh;
+    background-color: #000000;
+    border-radius: 20px;
+}
+
+.infos{
+      min-width: 500px;
+      color: #00e0ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+ 
+}
+
+#title{
+    margin-top: 30px;
+    font-size: 80px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.description{
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: 100px auto;
+    font-size: 30px;
+    text-align: center;
+    flex-wrap: wrap;
+  
+}
+#imageLogo{
+    margin-top: 50px;
+    max-width: 600px;
+    max-height: 400px;
+}
+
+.principal{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+#imageList{
+    max-width: 350px;
+}
+
+.analise {
+    display: flex;
+    width: 500px;
+    height: 100px;
+}
+
+.analise button {
+    height: 100px;
+    width: 100px;
+    border-radius: 60px;
+    border: 1px solid #2f2f31;
+    background: transparent;
+    margin-left: 50px;
+    transition: border-color 0.2s;
+}
+
+.analise button:hover {
+    background-color: #2d2d2d;
+}
+
+.analise button p {
+    color: #cc0000;
+    font-size: medium;
+}
+
+.vote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #353535;
+    border-radius: 50px;
+}
+
+#votar{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+#votos {
+    margin-right: 20px;
+    margin-top: 15px;
+}
